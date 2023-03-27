@@ -1,0 +1,22 @@
+{
+	"swagger": "2.0",
+	"info": {
+		"version": "1.0.0",
+		"title": "Swagger CRUD",
+        	"description": "Swagger CRUD description",
+        	"contact": {
+            		"email": "felipev.gonzalez@hotmail.com"
+        	}
+	},
+    	"host": "localhost:3000",
+	"basePath": "/api/v1/users",
+	"tags": [
+		{
+			"name": "Users",
+			"description": "User actions"
+		}
+	],
+	"schemes": ["http", "https"],
+	"consumes": ["application/json"],
+	"produces": ["application/json"]
+}
