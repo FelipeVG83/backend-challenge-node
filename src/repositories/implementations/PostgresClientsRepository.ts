@@ -1,16 +1,17 @@
-import { Client } from "../../entities/Client";
+import { AppDataSource } from "../../data-source";
+import { Client } from "../../database/entities/Client";
 import { IClientsRepository } from "../IClientsRepository";
 
 export class PostgresClientsRepository implements IClientsRepository {
-    async findByCpf(cpf: string): Promise<Client> {
-        return null;
+    async selectByCpf(cpf: string): Promise<Client> {
+        return await AppDataSource.getRepository(Client).findOneBy({ cpf: cpf });
     }
     
-    selectAll(): Promise<Client[]> {
-        throw new Error("Method not implemented.");
+    async selectAll(): Promise<Client[]> {
+        return await AppDataSource.getRepository(Client).find();
     }
 
     async save(client: Client): Promise<void> {
-        
+        await AppDataSource.getRepository(Client).create(client);
     }
 }

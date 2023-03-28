@@ -1,6 +1,7 @@
-import { Product } from "../entities/Product";
+import { Product } from "../database/entities/Product";
 
 export interface IProductsRepository {
+    selectById(id: number): Promise<Product>;
     selectAll(): Promise<Product[]>;
-    save(client: Product): Promise<void>;
+    save(product: Product): Promise<void>;
 }
