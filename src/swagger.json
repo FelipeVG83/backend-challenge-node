@@ -1,31 +1,233 @@
 {
-	"swagger": "2.0",
-	"info": {
-		"version": "1.0.0",
-		"title": "Swagger CRUD",
-		"description": "Swagger CRUD description",
-		"contact": {
-			"email": "felipev.gonzalez@hotmail.com"
-		}
-	},
-	"host": "localhost:3000",
-	"tags": [
-		{
-			"name": "Clientes",
-			"description": "User actions",
-			"actions": [
-				
-			]
-		}
-	],
-	"schemes": [
-		"http",
-		"https"
-	],
-	"consumes": [
-		"application/json"
-	],
-	"produces": [
-		"application/json"
-	]
+	"openapi": "3.0.1",
+  "info": {
+    "title": "Backend-Challenge-Node | Felipe Gonzalez",
+    "version": "v1"
+  },
+  "server": [
+    {
+      "url": "localhost"
+    }
+  ],
+  "paths": {
+    "/clients": {
+      "get": {
+        "tags": [
+          "Clientes"
+        ],
+        "Summary": "Retorna os clientes cadastros na base de dados",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Sucesso. Retorna listagem dos clientes encontrados."
+          },
+          "201": {
+            "description": "Sucesso. Não foram encontrados clientes na base de dados."
+          },
+          "400": {
+            "description": "Erro"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Clientes"
+        ],
+        "Summary": "Cadastra um cliente na base de dados",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ClientModel"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ClientModel"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ClientModel"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Sucesso. Cliente cadastrado."
+          },
+          "400": {
+            "description": "Erro nos parâmetros inseridos."
+          }
+        }
+      }
+    },
+    "/products": {
+      "get": {
+        "tags": [
+          "Produtos"
+        ],
+        "Summary": "Retorna os produtos cadastros na base de dados",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Sucesso. Retorna listagem dos produtos encontrados."
+          },
+          "201": {
+            "description": "Sucesso. Não foram encontrados produtos na base de dados."
+          },
+          "400": {
+            "description": "Erro"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Produtos"
+        ],
+        "Summary": "Cadastra um produto na base de dados",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProductModel"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProductModel"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProductModel"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Sucesso. Produto cadastrado."
+          },
+          "400": {
+            "description": "Erro nos parâmetros inseridos."
+          }
+        }
+      }
+    },
+    "/orders": {
+      "get": {
+        "tags": [
+          "Ordens"
+
+        ],
+        "Summary": "Retorna as ordens cadastras na base de dados",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Sucesso. Retorna listagem das ordens encontradas."
+          },
+          "201": {
+            "description": "Sucesso. Não foram encontradas ordens na base de dados."
+          },
+          "400": {
+            "description": "Erro"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Ordens"
+        ],
+        "Summary": "Cadastra uma ordem na base de dados",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OrderModel"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OrderModel"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/OrderModel"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Sucesso. Ordem cadastrada."
+          },
+          "400": {
+            "description": "Erro nos parâmetros inseridos."
+          }
+        }
+      }
+    }
+  }, 
+  "components": {
+    "schemas": {
+      "ClientModel": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": false
+          },
+          "cpf": {
+            "type": "string",
+            "nullable": false
+          },
+          "birthDate": {
+            "type": "date",
+            "nullable": false
+          },
+          "active": {
+            "type": "boolean",
+            "nullable": false
+          }
+        }
+      },
+      "ProductModel": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": false
+          },
+          "active": {
+            "type": "boolean",
+            "nullable": false
+          }
+        }
+      },
+      "OrderModel": {
+        "type": "object",
+        "properties": {
+          "clientId": {
+            "type": "number",
+            "nullable": false
+          },
+          "productId": {
+            "type": "number",
+            "nullable": false
+          },
+          "buyingValue": {
+            "type": "number",
+            "nullable": false
+          },
+          "buyingQtd": {
+            "type": "number",
+            "nullable": false
+          }
+        }
+      }
+    }
+  }
 }

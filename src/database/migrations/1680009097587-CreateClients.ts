@@ -9,10 +9,10 @@ export class CreateClients1680009097587 implements MigrationInterface {
                 columns: [
                     {
                         name: "clientId",
-                        type: "integer",
+                        type: "int",
                         isPrimary: true,
                         isGenerated: true,
-                        generatedIdentity: "ALWAYS"
+                        generationStrategy: "increment"
                     },
                     {
                         name: "name",

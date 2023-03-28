@@ -12,6 +12,6 @@ export class PostgresProductsRepository implements IProductsRepository {
     }
 
     async save(product: Product): Promise<void> {
-        await AppDataSource.getRepository(Product).create(product);
+        await AppDataSource.getRepository(Product).insert(product);
     }
 }

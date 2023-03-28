@@ -1,26 +1,25 @@
 import { Client } from "../../database/entities/Client";
 import { IClientsRepository } from "../../repositories/IClientsRepository";
-import { IClientRequestDTO } from "./ClientDTO";
 
-export interface ICreateClientUseCase {
-    create(data: IClientRequestDTO);
+export interface IClientUseCase {
+    create(data: Client);
     selectAll(): Promise<Client[]>;
 }
 
-export class CreateClientUseCase implements ICreateClientUseCase {
+export class ClientUseCase implements IClientUseCase {
     constructor(
         private clientsRepository: IClientsRepository
     ) { }
 
-    async create(data: IClientRequestDTO) {
+    async create(data: Client) {
         const clientAlreadyExists = await this.clientsRepository.selectByCpf(data.cpf);
+        console.log(clientAlreadyExists);
 
         if (clientAlreadyExists) {
             throw new Error('Client already exists.');
         }
-
         const user = new Client(data);
-        await this.clientsRepository.save(user);
+        const result = await this.clientsRepository.save(data);
     }
 
     async selectAll(): Promise<Client[]> {

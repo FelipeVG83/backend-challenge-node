@@ -1,17 +1,17 @@
 import { Request, Response } from "express";
-import { IClientUseCase } from "./ClientUseCase";
+import { IOrderUseCase } from "./OrderUseCase";
 
-export class ClientController {
+export class OrderController {
   constructor(
-    private clientUseCase: IClientUseCase,
+    private orderUseCase: IOrderUseCase,
   ) {}
 
   async select(request: Request, response: Response): Promise<Response> {
     try {
-        const result = await this.clientUseCase.selectAll();
+        const result = await this.orderUseCase.selectAll();
         if (!result.length) {
           return response.status(201).send();  
-        }    
+        }
         return response.status(200).json(result);  
       } catch (err) {
         return response.status(400).json({
@@ -21,14 +21,11 @@ export class ClientController {
   } 
 
   async create(request: Request, response: Response): Promise<Response> {
-    const { name, cpf, birthDate, active } = request.body;
+    const { clientId, productId, buyingValue, buyingQtd } = request.body;
 
     try {
-      await this.clientUseCase.create({
-        name,
-        cpf, 
-        birthDate, 
-        active
+      await this.orderUseCase.create({
+        clientId, productId, buyingValue, buyingQtd
       });
   
       return response.status(201).send();  

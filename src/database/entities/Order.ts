@@ -1,10 +1,10 @@
-import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryColumn, Timestamp } from "typeorm";
+import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn, Timestamp } from "typeorm";
 import { Client } from "./Client";
 import { Product } from "./Product";
 
 @Entity('orders')
 export class Order {
-    @PrimaryColumn()
+    @PrimaryGeneratedColumn('increment')
     public transactionId: number;
     @Column()
     @ManyToOne(() => Client)
@@ -21,7 +21,8 @@ export class Order {
     @CreateDateColumn()
     public dateOrder: Timestamp;
 
-    constructor(props: Omit<Order, 'transactionId'>, transactionId?: number) {
+    constructor(props: Omit<Order, 'transactionId' | 'buyingTotal' | 'dateOrder'>, transactionId?: number, buyingTotal?: number, dateOrder?: Timestamp) {
         Object.assign(this, props);
+        this.buyingTotal = this.buyingQtd * this.buyingValue;
     }
 }

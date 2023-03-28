@@ -9,10 +9,10 @@ export class CreateOrders1680011518659 implements MigrationInterface {
                 columns: [
                     {
                         name: "transactionId",
-                        type: "integer",
+                        type: "int",
                         isPrimary: true,
                         isGenerated: true,
-                        generatedIdentity: "ALWAYS"
+                        generationStrategy: "increment"
                     },
                     {
                         name: "clientId",

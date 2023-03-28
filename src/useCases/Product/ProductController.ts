@@ -8,9 +8,11 @@ export class ProductController {
 
   async select(request: Request, response: Response): Promise<Response> {
     try {
-        await this.productUseCase.selectAll();
-    
-        return response.status(201).send();  
+        const result = await this.productUseCase.selectAll();
+        if (!result.length) {
+          return response.status(201).send();  
+        }
+        return response.status(200).json(result);  
       } catch (err) {
         return response.status(400).json({
           message: err.message || 'Unexpected error.'

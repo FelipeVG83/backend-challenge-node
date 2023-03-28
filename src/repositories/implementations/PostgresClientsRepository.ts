@@ -12,6 +12,6 @@ export class PostgresClientsRepository implements IClientsRepository {
     }
 
     async save(client: Client): Promise<void> {
-        await AppDataSource.getRepository(Client).create(client);
+        const result = await AppDataSource.getRepository(Client).insert(client);
     }
 }
