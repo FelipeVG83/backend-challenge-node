@@ -13,6 +13,10 @@ export class ClientUseCase implements IClientUseCase {
     ) { }
 
     async create(data: IClientRequestDTO) {
+        if (!data.name || !data.cpf || !data.birthDate) {
+            throw new Error('Parameters bad request.');
+        }
+
         const clientAlreadyExists = await this.clientsRepository.selectByCpf(data.cpf);
 
         if (clientAlreadyExists) {
