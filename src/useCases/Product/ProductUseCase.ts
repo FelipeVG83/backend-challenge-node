@@ -13,6 +13,10 @@ export class ProductUseCase implements IProductUseCase {
     ) { }
 
     async create(data: IProductRequestDTO) {
+        if (!data.name) {
+            throw new Error('Name information is missing.')
+        }
+
         const product = new Product(data);
         await this.productsRepository.save(product);
     }

@@ -8,7 +8,7 @@ import { CreateOrders1680011518659 } from "./database/migrations/1680011518659-C
 
 export const AppDataSource = new DataSource({
     type: "postgres",
-    host: "localhost",
+    host: "db",
     port: 5432,
     username: "postgres",
     password: "p@ssw0rd",

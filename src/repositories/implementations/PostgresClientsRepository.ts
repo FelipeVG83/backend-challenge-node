@@ -3,6 +3,10 @@ import { Client } from "../../database/entities/Client";
 import { IClientsRepository } from "../IClientsRepository";
 
 export class PostgresClientsRepository implements IClientsRepository {
+    async selectById(id: number): Promise<Client> {
+        return await AppDataSource.getRepository(Client).findOneBy({ clientId: id });
+    }
+
     async selectByCpf(cpf: string): Promise<Client> {
         return await AppDataSource.getRepository(Client).findOneBy({ cpf: cpf });
     }
