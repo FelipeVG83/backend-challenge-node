@@ -9,7 +9,7 @@ services:
     ports:
       - "5432:5432"
   web:
-    image: backend-challenge-node-app
+    image: felipevg83/backend-challenge-node
     depends_on:
       - db
     ports:
